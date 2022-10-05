@@ -10,13 +10,22 @@ export const App = () => {
   const [completeTodos, setCompleteTodos] = useState([]);
   const [editorIndex, setEditorIndex] = useState([]);
   const [editorValue, setEditorValue] = useState([]);
+  const [deadline, setDeadline] = useState("なし");
   const onInputTodoText = (event) => setTodoText(event.target.value);
+  const deadlineChange = (event) => setDeadline(event.target.value);
 
   const onClickAdd = () => {
     if (todoText === "") return;
-    const newTodos = [...incompleteTodos, todoText];
+    const newTodos = [
+      ...incompleteTodos,
+      {
+        title: todoText,
+        deadline: deadline,
+      },
+    ];
     setIncompleteTodos(newTodos);
     setTodoText("");
+    setDeadline("なし");
   };
 
   const onClickInCompleteDelete = (index) => {
@@ -51,7 +60,7 @@ export const App = () => {
 
   const onClickEditor = (index) => {
     const newEditorTodos = [incompleteTodos[index]];
-    setEditorValue(newEditorTodos);
+    setEditorValue(newEditorTodos[0].title);
 
     setEditorIndex(index);
   };
@@ -59,8 +68,9 @@ export const App = () => {
   const onClickSave = () => {
     const newSaveTodos = [...incompleteTodos];
 
-    newSaveTodos[editorIndex] = editorValue;
+    newSaveTodos[editorIndex].title = editorValue;
     setIncompleteTodos(newSaveTodos);
+    setEditorValue("");
   };
 
   const onChangeEvent = (event) => {
@@ -75,6 +85,7 @@ export const App = () => {
         onChange={onInputTodoText}
         onClick={onClickAdd}
         disabled={incompleteTodos.length >= 5}
+        deadlineChange={deadlineChange}
       />
 
       {incompleteTodos.length >= 5 && (
@@ -102,12 +113,11 @@ export const App = () => {
           <div className="input-area-wrap">
             <textarea
               className="input-area"
-              defaultValue={editorValue}
+              value={editorValue}
               onChange={onChangeEvent}
             ></textarea>
           </div>
           <button onClick={() => onClickSave(editorIndex)}>保存</button>
-          <button>キャンセル</button>
         </div>
       </div>
     </>
