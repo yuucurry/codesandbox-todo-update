@@ -6,11 +6,11 @@ const style = {
   height: "30px",
   padding: "8px",
   margin: "8px",
-  borderRadius: "8px"
+  borderRadius: "8px",
 };
 
 export const InputTodo = (props) => {
-  const { todoText, onChange, onClick, disabled } = props;
+  const { todoText, onChange, onClick, disabled, deadlineChange } = props;
   return (
     <div style={style} className="input-area">
       {/* value は input の値、input の変更の検知は onChange */}
@@ -20,6 +20,14 @@ export const InputTodo = (props) => {
         value={todoText}
         onChange={onChange}
       />
+      <input
+        type="date"
+        name="deadline"
+        placeholder="締切日を選択してください。"
+        //value={deadline}
+        onChange={(event) => deadlineChange(event)}
+        required
+      ></input>
       <button disabled={disabled} onClick={onClick}>
         追加
       </button>
