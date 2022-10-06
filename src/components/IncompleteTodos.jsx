@@ -5,15 +5,15 @@ export const IncompleteTodos = (props) => {
     props;
 
   return (
-    <div className="imcomplete-area">
+    <div className="imcomplete_area">
       <p className="title">未完了のTODO</p>
       <div>
-        <ul id="incomplete-list">
+        <ul id="incomplete_list">
           {todos.map((todo, index) => {
             return (
-              <li key={todo.title} className="list-row">
-                <p className="textContent">{todo.title}</p>
-                <p className="textDeadline">{todo.deadline}</p>
+              <li key={todo.title} className="list_row">
+                <p className="text_content">{todo.title}</p>
+                <p className="text_deadline">{todo.deadline}</p>
                 <button onClick={() => onClickComplete(index)}>完了</button>
                 <button onClick={() => onClickInCompleteDelete(index)}>
                   削除
