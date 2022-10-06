@@ -10,9 +10,10 @@ const style = {
 };
 
 export const InputTodo = (props) => {
-  const { todoText, onChange, onClick, disabled, deadlineChange } = props;
+  const { todoText, onChange, onClick, disabled, deadline, deadlineChange } =
+    props;
   return (
-    <div style={style} className="input-area">
+    <div style={style} className="input_area">
       {/* value は input の値、input の変更の検知は onChange */}
       <input
         disabled={disabled}
@@ -24,7 +25,7 @@ export const InputTodo = (props) => {
         type="date"
         name="deadline"
         placeholder="締切日を選択してください。"
-        //value={deadline}
+        value={deadline}
         onChange={(event) => deadlineChange(event)}
         required
       ></input>

@@ -85,6 +85,7 @@ export const App = () => {
         onChange={onInputTodoText}
         onClick={onClickAdd}
         disabled={incompleteTodos.length >= 5}
+        deadline={deadline}
         deadlineChange={deadlineChange}
       />
 
@@ -94,25 +95,26 @@ export const App = () => {
         </p>
       )}
 
-      <IncompleteTodos
-        todos={incompleteTodos}
-        onClickComplete={onClickComplete}
-        onClickInCompleteDelete={onClickInCompleteDelete}
-        onClickEditor={onClickEditor}
-      />
+      <div className="todo_block">
+        <IncompleteTodos
+          todos={incompleteTodos}
+          onClickComplete={onClickComplete}
+          onClickInCompleteDelete={onClickInCompleteDelete}
+          onClickEditor={onClickEditor}
+        />
 
-      <CompleteTodos
-        todos={completeTodos}
-        onClickBack={onClickBack}
-        onClickCompleteDelete={onClickCompleteDelete}
-      />
-
-      <div className="edit-area">
+        <CompleteTodos
+          todos={completeTodos}
+          onClickBack={onClickBack}
+          onClickCompleteDelete={onClickCompleteDelete}
+        />
+      </div>
+      <div className="edit_area">
         <p className="title">編集するTODO</p>
-        <div id="edit-contents">
-          <div className="input-area-wrap">
+        <div id="edit_contents">
+          <div className="input_area_wrap">
             <textarea
-              className="input-area"
+              className="input_area"
               value={editorValue}
               onChange={onChangeEvent}
             ></textarea>
