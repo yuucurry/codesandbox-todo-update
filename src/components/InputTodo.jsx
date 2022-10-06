@@ -1,19 +1,15 @@
 import React from "react";
 
-const style = {
-  backgroundColor: "#c1ffff",
-  width: "400px",
-  height: "30px",
-  padding: "8px",
-  margin: "8px",
-  borderRadius: "8px",
-};
-
-export const InputTodo = (props) => {
-  const { todoText, onChange, onClick, disabled, deadline, deadlineChange } =
-    props;
+export const InputTodo = ({
+  todoText,
+  onChange,
+  onClick,
+  disabled,
+  deadline,
+  onChangeDeadline,
+}) => {
   return (
-    <div style={style} className="input_area">
+    <div className="input_area">
       {/* value は input の値、input の変更の検知は onChange */}
       <input
         disabled={disabled}
@@ -26,7 +22,7 @@ export const InputTodo = (props) => {
         name="deadline"
         placeholder="締切日を選択してください。"
         value={deadline}
-        onChange={(event) => deadlineChange(event)}
+        onChange={(event) => onChangeDeadline(event)}
         required
       ></input>
       <button disabled={disabled} onClick={onClick}>

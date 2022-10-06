@@ -3,6 +3,7 @@ import "./styles.css";
 import { InputTodo } from "./components/InputTodo";
 import { IncompleteTodos } from "./components/IncompleteTodos";
 import { CompleteTodos } from "./components/CompleteTodos";
+import { EditorTodos } from "./components/EditorTodos";
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
@@ -12,7 +13,7 @@ export const App = () => {
   const [editorValue, setEditorValue] = useState([]);
   const [deadline, setDeadline] = useState("なし");
   const onInputTodoText = (event) => setTodoText(event.target.value);
-  const deadlineChange = (event) => setDeadline(event.target.value);
+  const onChangeDeadline = (event) => setDeadline(event.target.value);
 
   const onClickAdd = () => {
     if (todoText === "") return;
@@ -86,7 +87,7 @@ export const App = () => {
         onClick={onClickAdd}
         disabled={incompleteTodos.length >= 5}
         deadline={deadline}
-        deadlineChange={deadlineChange}
+        onChangeDeadline={onChangeDeadline}
       />
 
       {incompleteTodos.length >= 5 && (
@@ -109,19 +110,13 @@ export const App = () => {
           onClickCompleteDelete={onClickCompleteDelete}
         />
       </div>
-      <div className="edit_area">
-        <p className="title">編集するTODO</p>
-        <div id="edit_contents">
-          <div className="input_area_wrap">
-            <textarea
-              className="input_area"
-              value={editorValue}
-              onChange={onChangeEvent}
-            ></textarea>
-          </div>
-          <button onClick={() => onClickSave(editorIndex)}>保存</button>
-        </div>
-      </div>
+
+      <EditorTodos
+        editorValue={editorValue}
+        onChangeEvent={onChangeEvent}
+        onClickSave={onClickSave}
+        editorIndex={editorIndex}
+      />
     </>
   );
 };

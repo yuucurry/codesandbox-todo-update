@@ -1,7 +1,10 @@
 import React from "react";
 
-export const CompleteTodos = (props) => {
-  const { todos, onClickBack, onClickCompleteDelete } = props;
+export const CompleteTodos = ({
+  todos,
+  onClickBack,
+  onClickCompleteDelete,
+}) => {
   return (
     <div className="complete_area">
       <p className="title">完了したTODO</p>
@@ -9,7 +12,7 @@ export const CompleteTodos = (props) => {
         <ul id="complete-list">
           {todos.map((todo, index) => {
             return (
-              <li key={todo.title} className="list-row">
+              <li key={index} className="list_row">
                 <p className="text_content">{todo.title}</p>
                 <p>{todo.deadline}</p>
                 <button onClick={() => onClickBack(index)}>戻す</button>
